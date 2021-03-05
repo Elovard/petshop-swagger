@@ -1,0 +1,72 @@
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+  "username": "test",
+  "firstName": "test",
+  "lastName": "Test",
+  "email": "test@gmail.com",
+  "password": "test",
+  "phone": "test",
+  "userStatus": 1
+}
+
+###
+
+POST http://localhost:8080/tag
+Content-Type: application/json
+
+{
+  "name":"animal"
+}
+
+###
+
+POST http://localhost:8080/pet
+Content-Type: application/json
+
+{
+  "category": [
+    {
+      "name": "dog"
+    }
+  ],
+  "name": "testPet",
+  "status": "AVAILABLE",
+  "tag": [
+    {
+    "name": "tag"
+    }
+  ],
+  "petStatusEnum": "AVAILABLE"
+
+}
+
+####
+
+POST http://localhost:8080/store/order
+Content-Type: application/json
+
+{
+  "petId": 1,
+  "quantity": 1,
+  "shipDate": "2021-02-24T11:39:34.739Z",
+  "status": "APPROVED",
+  "complete": true
+}
+
+###
+
+GET http://localhost:8080/user/test
+Content-Type: application/json
+
+###
+
+POST http://localhost:8080/store/order
+Content-Type: application/json
+
+{
+
+
+
+}
