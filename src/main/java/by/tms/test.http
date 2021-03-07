@@ -56,3 +56,16 @@ Content-Type: application/json
 {
   "name": "taaaag"
 }
+
+###
+
+POST http://localhost:8080/store/order
+Content-Type: application/json
+
+{
+  "petId": 1,
+  "quantity": 1,
+  "shipDate": "2021-02-02",
+  "status": "APPROVED",
+  "complete": false
+}
