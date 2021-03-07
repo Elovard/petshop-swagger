@@ -1,4 +1,4 @@
-package by.tms.storage;
+package by.tms.exception;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

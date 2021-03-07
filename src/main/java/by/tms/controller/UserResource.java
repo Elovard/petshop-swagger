@@ -4,16 +4,13 @@ import by.tms.model.Token;
 import by.tms.model.User;
 import by.tms.model.UserDTO;
 import by.tms.service.UserService;
-import by.tms.storage.InMemoryUserStorage;
 import by.tms.storage.TokenStorage;
-import by.tms.storage.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 

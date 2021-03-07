@@ -1,15 +1,11 @@
 package by.tms.service;
 
 import by.tms.model.Order;
-import by.tms.storage.InMemoryOrderStorage;
-import by.tms.storage.IsNotFoundException;
+import by.tms.exception.IsNotFoundException;
 import by.tms.storage.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;   // через интерсептор разрешить доступ к другим частям сайта (под замком которые)
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service

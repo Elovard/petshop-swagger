@@ -24,7 +24,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8080/user/findAll
-X-Token: 16f27851-79a5-4018-9328-ff570fc9dfc7
+X-Token: e1c44e5f-9364-42ce-b108-8c07e46f2553
 
 ###
 
