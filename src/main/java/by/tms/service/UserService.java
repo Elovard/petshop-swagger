@@ -1,7 +1,10 @@
 package by.tms.service;
 
+import by.tms.model.Token;
 import by.tms.model.User;
-import by.tms.storage.InMemoryUserStorage;
+import by.tms.model.UserRoleEnum;
+import by.tms.storage.UserAlreadyExistsException;
+import by.tms.storage.UserNotFoundException;
 import by.tms.storage.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +17,23 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void addUser(User user){
-        userRepository.save(user);
+    @Autowired
+    private TokenService tokenService;
+
+    public boolean isExist(String userName){
+        if(userRepository.existsByUserName(userName)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public User addUser(User user){
+        if (!userRepository.existsByUserName(user.getUserName())) {
+            user.setRole(UserRoleEnum.USER);
+            return userRepository.save(user);
+        }
+        throw new UserAlreadyExistsException("This user already exists");
     }
 
     public User getUserById(long id){
@@ -30,9 +48,21 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserByName(String name){
-        return userRepository.findUserByFirstName(name);
+    public User getUserByName(String userName){
+        return userRepository.findUserByFirstName(userName);
     }
+
+    public Token auth(User user){
+        User byUserName = userRepository.findUserByFirstName(user.getUserName());
+        if (user.equals(byUserName)) {
+            long id = byUserName.getId();
+            Token token = tokenService.getKey(id);
+            return token;
+        }
+        throw new UserNotFoundException("Incorrect login or password!");
+    }
+
+}
 
 
 //    public boolean save(User user){
@@ -62,4 +92,3 @@ public class UserService {
 //    public boolean deleteByUserName(String userName){
 //        return inMemoryUserStorage.deleteByUserName(userName);
 //    }
-}

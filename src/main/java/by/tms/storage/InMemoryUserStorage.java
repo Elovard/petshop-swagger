@@ -22,7 +22,7 @@ public class InMemoryUserStorage {
 
     public User getByUserName(String userName){
         for (User userFromList : userList) {
-            if (userFromList.getUsername().equals(userName)) {
+            if (userFromList.getUserName().equals(userName)) {
                 return userFromList;
             }
         }
@@ -32,7 +32,7 @@ public class InMemoryUserStorage {
     public boolean updateByUserName(User user, String userName){
         for (int i = 0; i < userList.size(); i++) {
             User userFromList = userList.get(i);
-            if (userFromList.getUsername().equals(userName)) {
+            if (userFromList.getUserName().equals(userName)) {
                 user.setId(userFromList.getId());
                 userList.set(i,user);
                 return true;
@@ -43,7 +43,7 @@ public class InMemoryUserStorage {
 
     public boolean deleteByUserName(String userName){
         for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getUsername().equals(userName)) {
+            if (userList.get(i).getUserName().equals(userName)) {
                 userList.remove(i);
                 break;
             }

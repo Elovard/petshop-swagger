@@ -15,8 +15,8 @@ public class CategoryService {
         return inMemoryCategoryStorage.add(category);
     }
 
-    public Category getById(long id){
-        return inMemoryCategoryStorage.getById(id);
+    public Category getById(long id){                 // в сервисе делаем валидацию всю, в сторадже - просто метод
+        return inMemoryCategoryStorage.getById(id);    // в контроллере просто валидация данных (@Valid)
     }
 
 }
