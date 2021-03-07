@@ -1,6 +1,7 @@
 package by.tms.controller;
 
 import by.tms.model.Order;
+import by.tms.model.OrderStatus;
 import by.tms.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,19 +12,19 @@ import javax.validation.Valid;
 import java.util.Map;
 
 @RestController
-@RequestMapping(path = "/store")
+@RequestMapping(path = "/store/order")
 public class StoreResource {
 
     @Autowired
     private StoreService storeService;
 
-    @PostMapping("/order")
+    @PostMapping
     public ResponseEntity<Order> saveOrder (@Valid @RequestBody Order order){
         storeService.addOrder(order);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
 
-    @GetMapping("/order/{id}")
+    @GetMapping(path ="/{id}")
     public ResponseEntity<Order> getById (@PathVariable("id") long id){
         Order byId = storeService.getById(id);
         if (byId != null){
@@ -32,7 +33,7 @@ public class StoreResource {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping
+    @DeleteMapping(path ="/{id}")
     public ResponseEntity<Order> deleteById (@PathVariable("id") long id){
         Order byId = storeService.getById(id);
         if (byId != null){
@@ -43,10 +44,9 @@ public class StoreResource {
     }
 
 
-//
-//    @GetMapping("/inventory")
-//    public ResponseEntity<Map<String, Integer>> getMapStatus() {
-//        Map<String, Integer> mapStatus = storeService.getMapStatus();
-//        return new ResponseEntity<>(mapStatus, HttpStatus.OK);
+//    @GetMapping(path = "/inventory")
+//    public ResponseEntity<Map<OrderStatus, Long>> getInventory(){
+//        Map<OrderStatus, Long> statusMap = storeService.getStatusMap();
+//        return new ResponseEntity<>(statusMap, HttpStatus.OK);
 //    }
 }

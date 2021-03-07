@@ -2,11 +2,15 @@ package by.tms.service;
 
 import by.tms.model.Order;
 import by.tms.exception.IsNotFoundException;
+import by.tms.model.OrderStatus;
 import by.tms.storage.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StoreService {
@@ -29,7 +33,6 @@ public class StoreService {
         }
         throw new IsNotFoundException("This order doesn't exist!");
     }
-
 
 
 }
