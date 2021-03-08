@@ -3,9 +3,11 @@ package by.tms.configurator;
 import by.tms.interceptor.AdminInterceptor;
 import by.tms.interceptor.UserInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+@Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
     @Autowired
@@ -17,7 +19,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry){
         registry
                 .addInterceptor(userInterceptor)
-                .addPathPatterns("/store/order")
+                .excludePathPatterns("/store/order")
                 .addPathPatterns("/user/findAll");
 
         registry
